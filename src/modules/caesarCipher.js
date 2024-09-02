@@ -1,13 +1,18 @@
 function caesarCipher(str, shiftFactor){
-    let charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let encryptedCharSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let smallSet = 'abcdefghijklmnopqrstuvwxyz';
+    let bigSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     shiftFactor %= 26;
-    encryptedCharSet = encryptedCharSet.slice(shiftFactor) + encryptedCharSet.slice(0, shiftFactor);
+    let encryptedCharSetSmall = smallSet.slice(shiftFactor) + smallSet.slice(0, shiftFactor);
+    let encryptedCharSetBig = bigSet.slice(shiftFactor) + bigSet.slice(0, shiftFactor);
     let encryptedText = "";
-    str = str.toUpperCase();
 
     for(let i=0; i<str.length; i++){
-        encryptedText += encryptedCharSet[charSet.indexOf(str[i])];
+        if(smallSet.includes(str[i])){
+            encryptedText += encryptedCharSetSmall[smallSet.indexOf(str[i])];
+        }
+        else{
+            encryptedText += encryptedCharSetBig[bigSet.indexOf(str[i])];
+        }
     }
     return encryptedText;
 }
