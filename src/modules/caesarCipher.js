@@ -2,10 +2,8 @@ function caesarCipher(str, shiftFactor) {
   let smallSet = "abcdefghijklmnopqrstuvwxyz";
   let bigSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   shiftFactor %= 26;
-  let encryptedCharSetSmall =
-    smallSet.slice(shiftFactor) + smallSet.slice(0, shiftFactor);
-  let encryptedCharSetBig =
-    bigSet.slice(shiftFactor) + bigSet.slice(0, shiftFactor);
+  let encryptedCharSetSmall = generateEncryptionCharSet(smallSet, shiftFactor);
+  let encryptedCharSetBig = generateEncryptionCharSet(bigSet, shiftFactor);
   let encryptedText = "";
 
   for (let i = 0; i < str.length; i++) {
@@ -18,6 +16,14 @@ function caesarCipher(str, shiftFactor) {
     }
   }
   return encryptedText;
+}
+
+function generateEncryptionCharSet(baseSet, shiftFactor){
+    return baseSet.slice(shiftFactor) + baseSet.slice(0, shiftFactor);
+}
+
+function encryptChar(char, set){
+
 }
 
 export { caesarCipher };
